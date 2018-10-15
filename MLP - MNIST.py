@@ -1,10 +1,10 @@
-import mnist_library
+import MLPlibrary
 import keras
 import os
 import json
 
-from mnist_library import MLP
-from mnist_library import aplicar_ruido
+from MLPlibrary import MLP
+from MLPlibrary import aplicar_ruido
 from keras.datasets import mnist
 from keras.layers import Dense, Dropout
 from keras import backend as K
@@ -27,7 +27,7 @@ train_y = keras.utils.to_categorical(train_y, 10)
 test_y = keras.utils.to_categorical(test_y, 10)
 
 
-ruidos = [0.0, 0.5, 0.7, 0.8, 0.85, 0.9]
+ruidos = [0.0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.82, 0.84, 0.86, 0.88, 0.90, 1.0]
 models = []
 history = []
 num_classes = 10
@@ -53,7 +53,7 @@ for i, taxa_ruido in enumerate(ruidos):
     model = MLP(ninput=784, nhidden=2, nneurons=128, outputs=num_classes, dropout=0.0)
 
     print('Iniciado treinamento com', taxa_ruido, 'de ruido')
-    tmp_history = model.train(x=train_x, y=train_ruido_y, epochs=30, batch_size=64, validation_split=0.1)
+    tmp_history = model.train(x=train_x, y=train_ruido_y, epochs=5, batch_size=128, validation_split=0.1, validation_data=(test_x, test_y))
     print('Terminado treinamento')
 
     model.model.save('model_' + str(i) + '.h5')
