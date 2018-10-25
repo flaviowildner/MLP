@@ -8,7 +8,6 @@ from keras.models import Model
 from keras.models import Sequential
 from keras.layers import Dense, Dropout, Flatten
 from keras import initializers
-from keras import backend as K
 
 
 class MLP(Model):
