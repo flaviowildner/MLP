@@ -16,7 +16,7 @@ class MLP(Model):
         self.model = Sequential()
 
         for i in range(nhidden):
-            self.model.add(Dense(128, activation='relu', input_shape=(ninput,) if i == 0 else []))
+            self.model.add(Dense(nneurons, activation='relu', input_shape=(ninput,) if i == 0 else []))
             self.model.add(Dropout(dropout))
 
         self.model.add(Dense(outputs, activation='softmax'))
